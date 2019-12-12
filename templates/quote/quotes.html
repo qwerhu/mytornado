@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description">
+    <meta name="author" >
+    <link rel="icon" href="../../static/upload/hu.ico">
+
+    <title>首页用户信息</title>
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="../../static/css/dashboard.css" rel="stylesheet">
+
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+               {% if username!= None %}
+          <a class="navbar-brand" href="#">欢迎<font style="color: yellow;font-size:20px">{{ username }}</font>进入管理中心</a>
+             {% end %}
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+                <li style="margin-right:510px "><a href="/"><font style="color: #ba8b00;font-size:20px">首页</font></a></li>
+               <li style="margin-right:40px "><a href="/logout"><font style="color: yellow;font-size:20px">退出</font></a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" style="background-color: brown">
+          <ul class="nav nav-sidebar" style="font-size: medium">
+            <li><a href="/administrator" style="color: black;">用户信息浏览</a></li>
+                <li><a href="/quotes" style="color: black;">格言信息浏览</a></li>
+            <li><a href="/explore" style="color: black;">图片浏览</a></li>
+            <li><a href="/post/{{ str(post_id) }}" style="color: black;">个人上传图片浏览</a></li>
+              <li><a href="/collectcenter?username={{ username }}" style="color: black;">个人收藏图片中心</a></li>
+              <li><a href="/profile?username={{ username }}" style="color: black;">人物收藏和上传图片中心</a></li>
+             <li><a href="/upload" style="color: black;">图片上传</a></li>
+
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="" style="color: black;">关于其他</a></li>
+            <li><a href="" style="color: black;">使用说明</a></li>
+          </ul>
+        </div>
+
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h3 class="sub-header">格言信息（共{{ len(quotes_all) }}条格言）</h3>
+          <div class="table-responsive">
+            <table class="table table-striped" style="font-size:16px">
+              <thead>
+                <tr style="font-size: 20px;color: olive">
+                    <td><b >格言ID</b></td>
+                    <td><b >作者名字</b></td>
+                    <td><b >作者国籍</b></td>
+                    <td><b style="margin-left: 120px">格言内容</b></td>
+                </tr>
+              </thead>
+              <tbody>
+              {% for quote  in  quotes_all%}
+                <tr {% if quote.id%2 !=0 %}style="color: darkslateblue" {% end %}}>
+                  <td><a href="#">{{ quote.id }}</a></td>
+                  <td>{{ quote.author }}</td>
+                  <td>{{ quote.country }}</td>
+                  <td width="400px">{{ quote.quotes_content }}</td>
+                    <td ><div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    操作 <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="/updatequote/{{ quote.id }}">修改</a></li>
+                    <li><a href="/deletequote/{{ str(quote.id) }}">删除</a></li>
+                    <li><a href="#">详细信息</a></li>
+                  </ul>
+                </div></td>
+                </tr>
+              {% end %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>

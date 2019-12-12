@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../static/upload/hu.ico">
+    <title>用户登录</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/signin.css" rel="stylesheet">
+  </head>
+  <body background="../../static/upload/dog.jpg">
+
+    <div class="container" >
+
+      <form class="form-signin" action="/login" enctype="multipart/form-data" method="post">
+          {% if msg!= None%}
+          <h4 style="margin-left: 75px;color: #ff6600">{{ msg }}</h4>
+          {% end %}
+        <h2 class="form-signin-heading" style="margin-left: 45px">请你进行登录</h2>
+           <label for="inputusername" class="sr-only">用户名</label>
+        <input type="text" id="inputusername" class="form-control" placeholder="请填写用户名" required autofocus name="username">
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="请填写密码" required name="password">
+          <input type="hidden" name="next_url" value="{{ next_url }}">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+      </form>
+
+        <div  style="margin-left: 420px">
+           <font size="3"> <b>没有注册，点击<a href="/register">注册</a></b></font>
+            <font size="3" style="margin-left: 80px"> <b><a href="/findpwd">忘记密码</a></b></font>
+        </div>
+
+    </div>
+  </body>
+</html>

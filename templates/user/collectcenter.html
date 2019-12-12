@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../static/upload/hu.ico">
+    <title>个人收藏图片界面</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/signin.css" rel="stylesheet">
+  </head>
+  <body style="background-color: darkslategrey">
+  {% if msg == '有喜欢图片' %}
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+               {% if username!= None %}
+          <a class="navbar-brand" href="#">当前在线用户：<font style="color: yellow;font-size:20px">{{ username }}</font></a>
+             {% end %}
+              <a class="navbar-brand" href="#" style="margin-left: 350px">共喜欢<font style="color: yellow;font-size:20px">{{ len(list_post) }}</font>张图片</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+               <li style="margin-right:40px "><a href="/logout"><font style="color: yellow;font-size:20px">退出</font></a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container"  style="margin-top: 15px;color: black;margin-left: 130px">
+        <h4>个人收藏图片如下（用户编号为{{ user_id}}）：</h4>
+        {% for post in list_post %}
+        <a href="/one_picture/{{ post.id }}"><img src="{{ static_url(post.image_url) }}" width="200" height="200"></a>
+        {% end %}<br>
+    </div>
+  {% elif msg == '无喜欢图片' %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+               {% if username!= None %}
+          <a class="navbar-brand" href="#">当前在线用户：<font style="color: yellow;font-size:20px">{{ username }}</font></a>
+             {% end %}
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+               <li style="margin-right:40px "><a href="/logout"><font style="color: yellow;font-size:20px">退出</font></a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <div><h4 style="color: #ff6600;font-size: 30px;margin-left: 450px;margin-top: 50px">{{ msg }},<a href="/explore">点击浏览图片进行收藏</a></h4></div>
+    {% end %}
+  </body>
+</html>

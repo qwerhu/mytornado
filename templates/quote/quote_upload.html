@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../static/upload/hu.ico">
+    <title>格言上传</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/signin.css" rel="stylesheet">
+  </head>
+  <body background="../../static/upload/2.jpg">
+
+    <div class="container" >
+
+      <form class="form-signin" action="/uploadquote" enctype="multipart/form-data" method="post">
+        <h2 class="form-signin-heading" style="margin-left: 30px">请你进行上传格言</h2>
+           <label for="inputusername" class="sr-only">请填写作者名</label>
+        <input type="text" id="inputusername" class="form-control" placeholder="请填写作者名" required autofocus name="author" >
+        <label for="inputPassword" class="sr-only">国籍</label>
+        <input type="text" id="inputPassword" class="form-control" placeholder="请填写国籍" required name="country" >
+          <b><textarea style="width: 300px;font-size: 15px;height: 130px" name="content" placeholder="请填写格言内容"></textarea></b>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" autofocus>上传</button>
+      </form>
+<div  style="margin-left: 550px">
+           <font size="3"> <b>不用修改，直接<a href="/">返回首页</a></b></font>
+        </div>
+    </div>
+  </body>
+</html>

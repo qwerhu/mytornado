@@ -1,0 +1,14 @@
+{% extends base.html %}
+
+{% block title %}
+登录界面
+{% end %}
+
+{% block  body%}
+<form action="/login" enctype="multipart/form-data" method="post">
+   用户名： <input type="text" name="username"/><br>
+    密码：<input type="password" name="password"/>
+    <input type="hidden" name="next_url" value="{{ next_url }}">
+    <input type="submit"/>
+</form>
+{% end %}

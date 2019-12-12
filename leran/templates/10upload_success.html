@@ -1,0 +1,20 @@
+{% extends base.html %}
+{% block title %}
+图片上传成功界面
+{% end %}
+
+{% block body%}
+你成功上传了图片{{ filename }}!!!!，图片如下：<br>
+<img src="{{ static_url('upload/{}'.format(filename)) }}" width="250" height="250"><br>
+{% set line="===="*6 %}
+{{ line }}<br>
+其他的上传图片还有如下几张：<br>
+{% for img in list_img %}
+<img src="{{ static_url(img) }}" width="250" height="250">
+{% end %}
+<br>
+缩略图片如下：<br>
+{% for img in new_list_thumb %}
+<img src="{{ static_url(img) }}" width="250" height="250">
+{% end %}
+{% end %}

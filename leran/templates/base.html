@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Torando{% end %}</title>
+    <link rel="shortcut icon" href="{{ static_url('images/hu.ico')}}"/>
+</head>
+<body>
+{% block body %}
+<br>
+{% if username != 'no' %}
+欢迎{{username}}!!!</br>
+{% else %}
+请登录
+{% end %}
+是第{{num}}号
+{% end %}
+</body>
+</html>

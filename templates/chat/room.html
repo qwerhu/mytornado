@@ -1,0 +1,47 @@
+{% extends ../base.html %}
+{% block title %}
+聊天室
+{% end %}
+{% block body %}
+<div class="row" >
+  <div class="col-sm-3" style="color: #bee5eb"></div>
+     <div class="col-sm-6" style="border:3px solid orchid;background-color: #062c33">
+         <div id="inbox" style="color: #bee5eb;height:400px;overflow-y:auto">
+             {% for msg in msgs %}
+             {% raw msg%}
+             {% end %}
+         </div>
+         <div style="margin-top: 30px;border:3px solid blue;width:543px">
+    <form action="/ws" method="post" id="messageform">
+        <table >
+            <tr>
+                <td>
+
+                   <input type="text" name="body" id="message" style="width: 470px">
+
+                </td>
+                <td style="padding-left: 5px">
+
+                    <input class="btn btn-primary" type="submit" value="提交" style="font-size: 20px">
+
+                </td>
+            </tr>
+        </table>
+    </form>
+</div></div>
+  <div class="col-sm-3" >col-sm-4</div>
+</div>
+{% end %}
+{% block user %}
+<li style="margin-left: 230px">
+      <a class="nav-link disabled" href="#">当前用户<i class="fa fa-user" aria-hidden="true" style="font-size: 25px;color: #ff6600"></i>：<font style="color: yellow">{{ username }}</font></a>
+    </li>
+{% end %}
+
+{% block script %}
+<script src="../../static/js/chat.js"></script>
+{% end %}
+
+{% block upload_image_person %}
+<a class="dropdown-item" href="/profile?username={{ username }}">查看上传和收藏的图片</a>
+{% end %}

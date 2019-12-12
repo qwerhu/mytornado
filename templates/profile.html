@@ -1,0 +1,20 @@
+{% extends base_text.html %}
+{% block title %}
+收藏和上传图片浏览
+{% end %}
+{% block upload_user %}
+ <a class="navbar-brand" href="#" style="margin-left: 250px"><font color="yellow">{{ user.username }}</font>共上传<font style="color: yellow;font-size:20px">{{ len(user.posts) }}</font>张图片</a>
+ <a class="navbar-brand" href="#" style="margin-left: 30px">共喜欢<font style="color: yellow;font-size:20px">{{ len(like_post) }}</font>张图片</a>/
+{% end %}
+{% block body %}
+    <div class="container"  style="margin-top: 15px;color: black;margin-left: 130px">
+        <h4><font color="yellow">{{ user.username }}</font>上传图片如下（用户编号为{{ user.id }}）：</h4>
+        {% for post in user.posts %}
+        <a href="/one_picture/{{ post.id }}"><img src="{{ static_url(post.image_url) }}" class="img-thumbnail" style="height: 150px;width: 150px"></a>
+        {% end %}<br>
+        <h4><font color="yellow">{{ user.username }}</font>收藏的图片如下：</h4>
+        {% for post in like_post %}
+        <a href="/one_picture/{{ post.id }}"><img src="{{ static_url(post.thumb_url) }}" class="img-thumbnail" style="height: 150px;width: 150px"></a>
+        {% end %}
+    </div>
+{% end %}

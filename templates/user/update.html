@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../static/upload/hu.ico">
+    <title>用户修改</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/signin.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body background="../../static/upload/2.jpg">
+
+    <div class="container" >
+
+      <form class="form-signin" action="/updateuser/{{ str(user.id) }}" enctype="multipart/form-data" method="post">
+        <h2 class="form-signin-heading" style="margin-left: 45px">请你进行修改</h2>
+           <label for="inputusername" class="sr-only">用户名</label>
+        <input type="text" id="inputusername" class="form-control" placeholder="修改用户名" required autofocus name="username" value="{{ user.username }}">
+        <label for="inputPassword" class="sr-only">密码</label>
+        <input type="text" id="inputPassword" class="form-control" placeholder="修改密码" required name="password" value="{{ user.password }}">
+         <label for="inputEmail" class="sr-only">电子邮件</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="修改电子邮件" required autofocus name="email" value="{{ user.emial }}">
+          <label for="inputgender" class="sr-only">性别</label>
+        <input type="text" id="inputgender" class="form-control" placeholder="修改性别" required autofocus name="gender" value="{{ user.gender}}">
+          <label for="inputage" class="sr-only">年龄</label>
+        <input type="text" id="inputage" class="form-control" placeholder="修改年龄" required autofocus name="age" value="{{ user.age }}">
+          <label for="inputage" class="sr-only">权限</label>
+        <input type="text" id="inputage" class="form-control" placeholder="修改权限" required autofocus name="power" value="{{ str(user.power) }}">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">修改</button>
+      </form>
+<div  style="margin-left: 550px">
+           <font size="3"> <b>不用修改，直接<a href="/">返回首页</a></b></font>
+        </div>
+    </div>
+  </body>
+</html>

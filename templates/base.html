@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../static/upload/hu.ico">
+    <title>{% block title %}个人图片上传成功界面{% end %}</title>
+      <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/signin.css" rel="stylesheet">
+      <link href="../static/css/bootstrap.css" rel="stylesheet">
+  </head>
+  <body style="background-color: #212529">
+  <div class="container" style="font-size: 20px">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+             <a class="nav-link" href="/" >首页</a>
+        </li>
+      <li class="nav-item " style="margin-left: 18px">
+        <a class="nav-link" href="/upload">图片上传</a>
+      </li>
+
+      <li class="nav-item" style="margin-left: 18px">
+        <a class="nav-link" href="/explore ">图片浏览</a>
+      </li>
+      <li class="nav-item dropdown" style="margin-left: 18px">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         用户中心
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: cyan;font-size: 17px;">
+          <b><a class="dropdown-item" href="/selfupdate?username={{ username }}">修改用户信息</a>
+          <a class="dropdown-item" href="/selfpost?username={{ username }}">个人图片管理</a>
+              {% if power_id == 1 %}
+            <a class="dropdown-item" href="/administrator">用户管理</a>
+              <a class="dropdown-item" href="/quotes">格言管理</a>
+              <a class="dropdown-item" href="/uploadquote">上传格言</a>
+              {% end %}
+            {% block upload_image_person %}
+            {% end %}</b>
+        </div>
+      </li>
+        <li class="nav-item dropdown" style="margin-left: 18px">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         其他功能
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: cyan;font-size: 17px;">
+          <b><a class="dropdown-item" href="#">聊天机器人</a>
+              <a class="dropdown-item" href="/room">聊天室</a>
+          <a class="dropdown-item" href="#">图书爬虫</a>
+            <a class="dropdown-item" href="#">图像识别</a>
+              <a class="dropdown-item" href="#">数据分析</a>
+           </b>
+        </div>
+      </li>
+
+      <li style=";margin-left: 18px" class="nav-item ">
+        <a class="nav-link" href="/logout">退出</a>
+      </li>
+        {% block rotate %}
+        {% end %}
+        {% block all_images %}
+        {% end %}
+        {% block user %}
+
+        {% end %}
+    </ul>
+  </div>
+  </nav>
+       {% block body %}
+
+  {% end %}
+</div>
+
+  <script src="../static/js/jquery.min.js"></script>
+   <script src="../static/js/popper.min.js"></script>
+   <script src="../static/js/bootstrap.js"></script>
+  {% block script %}
+  {% end %}
+  </body>
+</html>

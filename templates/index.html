@@ -1,0 +1,106 @@
+{% extends base.html %}
+
+{% block title %}
+系统首页
+{% end  %}
+
+{% block body %}
+
+<div class="row">
+
+  <div class="col-sm-7">
+      <div class="alert alert-dark" role="alert" style="margin-top: 5px;width: 565px">
+         <font style="margin-left: 200px"><b>所有用户图片</b></font>
+     </div>
+      {% for post in posts %}
+      <a href="/one_picture/{{ post.id }}"><img src="{{ static_url(post.image_url) }}" class="img-thumbnail" style="height: 185px;width: 185px">
+      </a>
+      {% end %}
+      <div class="alert alert-dark" role="alert" style="margin-top: 10px;width: 565px">
+          <a href="/" style="margin-left: 220px;font-size: 20px;color: black"><b>回到顶部</b></a>
+     </div>
+  </div>
+
+  <div class="col-sm-5">
+      <div class="card text-white bg-success mb-3" style="max-width: 40rem;">
+  <div class="card-header">格言</div>
+  <div class="card-body">
+    <h3 class="card-title">{{ quotes_one.author }}（国籍：{{ quotes_one.country }}）</h3>
+    <p class="card-text" style="color: black">{{ quotes_one.quotes_content }}</p>
+  </div>
+</div>
+      <div class="card" style="width: 37rem;margin-top: 10px;color:olive;font-size: 17px">
+  <div class="card-body">
+    <h3 class="card-title">主题</h3>
+      <p class="card-text"><font color="#006400"><b>上传图片前三名用户排行榜</b></font></p>
+  </div>
+  <ul class="list-group list-group-flush">
+      <li class="list-group-item"><font color="black;"><b>第一名:<a href="/profile?username={{ list_three_user[0].username }}">{{ list_three_user[0].username }}</a>--邮件：{{ list_three_user[0].emial }}--{{ list_three_size[0] }}张</b></font></li>
+      <li class="list-group-item"><font color="black;"><b>第二名:<a href="/profile?username={{ list_three_user[1].username }}">{{  list_three_user[1].username}}</a>--邮件：{{ list_three_user[1].emial }}--{{ list_three_size[1] }}张</b></font></li>
+      <li class="list-group-item"><font color="black;"><b>第三名:<a href="/profile?username={{ list_three_user[2].username }}">{{ list_three_user[2].username }}</a>--邮件：{{  list_three_user[2].emial}}--{{ list_three_size[2] }}张</b></font></li>
+  </ul>
+</div>
+       <div class="alert alert-warning" role="alert" style="margin-top: 10px">
+     <font color="black">轮播图中随机的三张图片</font>
+     </div>
+      <div class="bd-example">
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+          <a href="/one_picture/{{ posts[0].id }}"><img src="{{ static_url(posts[0].image_url) }}" class="d-block w-100" alt="..."></a>
+        <div class="carousel-caption d-none d-md-block">
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+       <a href="/one_picture/{{ posts[5].id }}"><img src="{{ static_url(posts[5].image_url) }}" class="d-block w-100" alt="..."></a>
+        <div class="carousel-caption d-none d-md-block">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <a href="/one_picture/{{ posts[2].id }}"><img src="{{ static_url(posts[2].image_url) }}" class="d-block w-100" alt="..."></a>
+        <div class="carousel-caption d-none d-md-block">
+          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+  </div>
+</div>
+{% end %}
+
+
+{% block upload_image_person %}
+<a class="dropdown-item" href="/profile?username={{ username }}">查看上传和收藏的图片</a>
+{% end %}
+{% block user %}
+<li style="margin-left: 70px">
+      <a class="nav-link disabled" href="#">当前用户<i class="fa fa-user" aria-hidden="true" style="font-size: 25px;color: #ff6600"></i>：<font style="color: yellow">{{ username }}</font></a>
+    </li>
+{% end %}
+
+
+{% block rotate %}
+<li>
+<div class="spinner-border text-warning" role="status" style="margin-left: 100px;margin-top: 16px ">
+  <span class="sr-only">Loading...</span>
+</div>
+    <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+</li>
+{% end %}
+
+

@@ -1,0 +1,12 @@
+{% extends base.html %}
+
+{% block title %}
+上传图片界面
+{% end %}
+
+{% block  body%}
+<form action="/upload" enctype="multipart/form-data" method="post">
+   上传文件： <input type="file" name="picture"/><br>
+    <input type="submit"/>
+</form>
+{% end %}

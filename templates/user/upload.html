@@ -1,0 +1,79 @@
+{% extends ../base.html %}
+{% block title %}
+图片上传
+{% end %}
+{% block user %}
+<li style="margin-left: 250px">
+      <a class="nav-link disabled" href="#">当前用户<i class="fa fa-user" aria-hidden="true" style="font-size: 25px;color: #ff6600"></i>：<font style="color: yellow">{{ username }}</font></a>
+    </li>
+{% end %}
+{% block body %}
+
+
+<div class="row">
+  <div class="col-5"><div class="container"  style="margin-top: 60px">
+
+      <form class="form-signin" action="/upload" enctype="multipart/form-data" method="post">
+        <h2 class="form-signin-heading" style="margin-left: 37px;color: yellow">请上传相应的图片</h2>
+           <label for="inputfile" class="sr-only">用户名</label>
+        <input type="file" id="inputfile" class="form-control"  required autofocus name="picture">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">上传</button>
+      </form>
+<div  style="margin-left: 170px">
+           <font size="3"> <b>查看上传图片，<a href="/check">直接点我</a></b></font>
+        </div>
+
+      <div class="row" style="margin-top: 40px;max-width: 40rem;margin-left: 40px;margin-right: 40px">
+  <div class="col-12">
+      <div class="alert alert-dark" role="alert" style="height: 160px">
+   根据url来上传图片
+          <div class="input-group mb-3" style="margin-top: 10px">
+  <form class="form-signin" action="/save" enctype="multipart/form-data" method="post">
+  <input type="text" class="form-control" placeholder="输入你的图片url" aria-label="Recipient's username" aria-describedby="basic-addon2" name="save_url">
+    <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 10px">提交</button>
+  </form>
+          </div>
+</div>
+      <div class="card text-white bg-success mb-3" style="max-width: 30rem;margin-top: 60px">
+  <div class="card-body">
+    <h3 class="card-title">个人上传图片信息</h3>
+      <p class="card-text" style="color: black"><b style="color: yellow">{{ username}}</b>共上传<b style="color: yellow">{{ len(posts)  }}</b>张图片，喜欢图片<b style="color: yellow">{{ len(like_posts) }}</b>张，自己的图片被<b style="color: yellow">{{ sum(single_length) }}</b>个人喜欢</p>
+  </div>
+</div>
+  </div>
+
+</div>
+    </div></div>
+
+
+  <div class="col-7">
+<div class="alert alert-primary" role="alert">
+  <a href="/post/{{ user_id }}" class="alert-link" style="margin-left: 190px">个人上传的全部图片</a>
+</div>
+      {% for post in posts %}
+        <a href="/one_picture/{{ post.id }}"><img src="{{ static_url(post.image_url) }}" class="img-thumbnail" style="height: 150px;width: 154px"></a>
+        {% end %}<br>
+      {% if list_data %}
+       <div class="alert alert-primary" role="alert" style="margin-top: 10px">
+  <a href="#" class="alert-link" style="margin-left: 210px">未被喜欢的图片</a>
+</div>
+      {% end %}
+      {% for data in list_data %}
+        <a href="/one_picture/{{ data[0].id }}"><img src="{{ static_url(data[0].image_url) }}" class="img-thumbnail" style="height: 150px;width: 154px"></a>
+        {% end %}<br>
+
+
+      {% if len(posts)+len(list_data)>=16 %}
+      <div class="alert alert-primary" role="alert" style="margin-top: 10px">
+  <a href="/upload" class="alert-link" style="margin-left: 240px">回到顶部</a>
+</div>
+      {% end %}
+  </div>
+</div>
+
+{% end %}
+{% block upload_image_person %}
+<a class="dropdown-item" href="/profile?username={{ username }}">查看上传和收藏的图片</a>
+{% end %}
+
+

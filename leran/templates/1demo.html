@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<br lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title}}</title>
+</head>
+<body>
+{{ linkify("Hello http://tornadoweb.org!") }}
+{% autoescape None%}
+{#  当前时间{{time}}<br>#}
+{{ escape(atga) }}<br>
+{% raw atga %}
+大家好！我是{{ username }} </br>
+传过来的数据是{{items}} </br>
+
+{% if len(items) > 2 %}
+传过来的数据长度是{{len(items)}}<br>
+第一个数据为{{items[0]}}
+{% else%}
+传过来的数据长度小于2
+{%end%}
+
+
+ <ul>
+       {% for item in items %}
+         <li>{{ item }}</li>
+       {% end %}
+ </ul>
+
+
+{% set a=5 %}
+{{ line }}<br>
+{% while a < 10%}
+{{ a }}<br>
+{% set a +=1 %}
+
+{% end %}
+<br>
+{{ line }}<br>
+
+{% for student in students%}
+    名字为{{student['name']}}<br>
+     年龄为{{student['age']}}<br>
+     爱好为{{student['hobby']}}<br>
+     个人网址为<a href=" {{ student['web'] }}"> {{ student['web'] }}</a> <br>
+      {{line}}<br>
+{%end%}
+
+<img src="/static/images/1.jpg" width="250" height="250"/>
+<img src="{{ static_url('images/1.jpg') }}" width="250" height="250"/>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends base.html %}
+{% block title %}
+个人上传图片浏览
+{% end %}
+{% block all_images %}
+ <li style="margin-left: 100px">
+      <a class="nav-link disabled" href="/post/{{ str(post_id) }}">共<font style="color: yellow">{{ len(posts) }}</font>张图片</a>
+    </li>
+{% end %}2
+{% block user %}
+{% end %}
+{% block body%}
+
+    <div class="container"  style="margin-top: 15px;color: black;margin-left: 0px">
+        <h2>个人上传图片如下（用户编号为{{ post_id }}）：</h2>
+        {% for post in posts %}
+        <a href="/one_picture/{{ post.id }}"><img src="{{ static_url(post.image_url) }}" class="img-thumbnail" style="height: 150px;width: 150px"></a>
+        {% end %}<br>
+        <h2>形成的缩略图片如下：</h2>
+        {% for post in posts %}
+        <a href="/one_picture/{{ post.id }}"><img src="{{ static_url(post.thumb_url) }}" class="img-thumbnail" style="height: 150px;width: 150px"></a>
+        {% end %}
+    </div>
+{% end %}
+{% block upload_image_person %}
+<a class="dropdown-item" href="/profile?username={{ username }}">查看上传和收藏的图片</a>
+{% end %}
+{% block user %}
+<li style="margin-left: 40px">
+      <a class="nav-link disabled" href="#">当前用户<i class="fa fa-user" aria-hidden="true" style="font-size: 25px;color: #ff6600"></i>：<font style="color: yellow">{{ username }}</font></a>
+    </li>
+{% end %}
+

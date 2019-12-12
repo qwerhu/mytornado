@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>个人图片信息页面</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/css/cover.css" rel="stylesheet">
+       <link href="../../static/css/dashboard.css" rel="stylesheet">
+
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  </head>
+  <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="margin-top: 1px;">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">当前在线用户：<font style="color: yellow;font-size:20px">{{ username }}</font></a>
+            <a class="navbar-brand" href="/" style="margin-left: 400px"><font style="color: yellow;font-size:20px">首页</font></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+               <li style="margin-right:40px "><a href="/logout"><font style="color: yellow;font-size:20px">退出</font></a></li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div >
+        <div style="margin-top: 10px;margin-left: 100px;margin-right: 100px">
+            <table class="table table-bordered">
+                <tr>
+                    <td>图片ID</td>
+                    <td>图片地址</td>
+                    <td>缩略图地址</td>
+                    <td>图片</td>
+                    <td>操作</td>
+
+                </tr>
+                {% set url='/static/' %}
+                {% set protoc='http://127.0.0.1:8080' %}
+                    {% for post in posts %}
+                     <tr >
+
+                         <b ><td ><a href="#" >{{post.id  }}</a></td>
+                     <td ><a href="{{  protoc+url+post.image_url }}" {% if post.id %2 !=0 %}style="color: yellow"{% end %}>{{ url+post.image_url }}</a></td>
+                    <td><a href="{{protoc+url+post.thumb_url }}" {% if post.id %2 !=0 %}style="color: yellow"{% end %}>{{ url+post.thumb_url }}</a></td></b>
+                         <td><a href="/one_picture/{{ post.id }}"><img src="{{ static_url(post.thumb_url) }}" class="img-thumbnail" style="height: 100px;width: 100px"></a></td>
+                         <td><div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    操作 <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="/deletepost/{{ str(post.id) }}">删除</a></li>
+                    <li><a href="/one_picture/{{ str(post.id )}}">图片详细信息</a></li>
+                  </ul></div></td>
+                     </tr>
+                {% end %}
+
+            </table>
+          </div>
+      </div>
+
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="../../static/js/jquery.min.js"></script>
+   <script src="../../static/js/popper.min.js"></script>
+   <script src="../../static/js/bootstrap.js"></script>
+  </body>
+</html>

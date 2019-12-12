@@ -1,0 +1,45 @@
+{% extends base.html %}
+{% block title %}
+全部图片浏览
+{% end %}
+{% block user %}
+<li style="margin-left: 30px">
+      <a class="nav-link disabled" href="#">当前用户<i class="fa fa-user" aria-hidden="true" style="font-size: 25px;color: #ff6600"></i>：<font style="color: yellow">{{ username }}</font></a>
+    </li>
+{% end %}
+{% block all_images %}
+ <li style="margin-left: 100px">
+      <a class="nav-link disabled" href="#">共<font style="color: yellow">{{ pg.total }}</font>张图片</a>
+    </li>
+{% end %}
+
+{% block body %}
+{% for post in pg.items %}
+<a href="/one_picture/{{ post.id }}"><img src="{{ static_url(post.thumb_url) }}" class="img-thumbnail" style="height: 150px;width: 150px"></a>
+{% end %}
+
+<nav aria-label="Page navigation example" >
+  <ul class="pagination"  style="margin-left: 300px">
+      {% if pg.has_previous %}
+    <li class="page-item"><a class="page-link" href="/explore?page={{ pg.previous_page }}">上一页</a></li>
+      {% else %}
+      <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>
+      {% end %}
+      {% for i in range(pg.pages) %}
+    <li class="page-item {% if page== i + 1 %}active{% end %}" ><a class="page-link" href="/explore?page={{ i + 1 }}">{{ i + 1}}</a></li>
+      {% end %}
+     {% if pg.has_next %}
+    <li class="page-item"><a class="page-link" href="/explore?page={{ pg.next_page }}">下一页</a></li>
+      {% else %}
+      <li class="page-item disabled"><a class="page-link" href="#">下一页</a></li>
+      {% end %}
+  </ul>
+</nav>
+
+{% end %}
+{% block upload_image_person %}
+<a class="dropdown-item" href="/profile?username={{ username }}">查看上传和收藏的图片</a>
+{% end %}
+
+
+

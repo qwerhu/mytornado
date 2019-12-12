@@ -1,0 +1,29 @@
+{% extends base_text.html %}
+{% block title %}
+
+{% end %}
+
+{% block upload_user %}
+ <a class="navbar-brand" href="/profile?username={{ upload_user }}" style="margin-left: 130px">上传人：<font style="color: yellow;font-size:20px">{{ upload_user }}</font></a>
+<a class="navbar-brand" href="#" style="margin-left: 50px">{{ upload_user }}共上传<font style="color: yellow;font-size:20px">{{ uploaded_pictures_count }}</font>张图片</a>
+ {% if like_number != 0 %}
+    <a class="navbar-brand" href="#" style="margin-left: 50px">喜欢人数：<font style="color: yellow;font-size:20px">{{ like_number }}</font>个人</a>
+{% end %}
+
+
+    {% if value['msg'] =='good' %}
+     <a class="navbar-brand" href="/canclecollect/{{ str(current_user_id) }}/{{ str(post.id) }}" style="margin-left: 50px"><font style="color: yellow;font-size:20px">取消收藏</font></a>
+   {% else %}
+    <a class="navbar-brand" href="/collect/{{ str(current_user_id) }}/{{ str(post.id) }}" style="margin-left: 30px"><font style="color: yellow;font-size:20px">点击收藏</font></a>
+    {% end %}
+
+
+{% end %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col-sm-12" style="margin-top: 80px"> <img style="margin-left: 400px;margin-top: 30px" src="{{ static_url(post.image_url) }}" width="550" height="550" class="img-thumbnail"></div>
+</div>
+
+{% end %}
